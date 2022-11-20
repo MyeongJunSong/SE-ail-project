@@ -142,3 +142,67 @@ hr {
   -webkit-appearance: none;
 }
 
+.pro-container {
+  margin: auto;
+  max-width: 800px;
+}
+
+.pro-block {
+  background: aliceblue;
+  padding: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: -9px 17px 13px rgb(0 0 0 16%);
+}
+
+.pro-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 30px;
+}
+
+.pro-button {
+  background: #7A84EB;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  width: 120px
+}
+
+.pro-button:hover {
+  background: #636ee6;
+  cursor: pointer;
+}
+
+.list-style {
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom: 1px dotted black;
+}
+
+.list-content {
+font-size: 20px;
+}
+
+.list-button {
+  background: #7A84EB;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  width: 90px;
+}
