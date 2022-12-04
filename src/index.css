@@ -98,6 +98,9 @@ hr {
   color: white;
   margin-left: 300px;
 }
+.user-id:hover {
+  cursor: pointer;
+}
 .project {
   font-size: 30px;
   color: white;
@@ -145,10 +148,11 @@ hr {
 .pro-container {
   margin: auto;
   max-width: 800px;
+  color: black;
 }
 
 .pro-block {
-  background: aliceblue;
+  background: #d3d6f8;
   padding: 30px;
   margin-top: 50px;
   border-radius: 10px;
@@ -166,7 +170,7 @@ hr {
 }
 
 .pro-button {
-  background: #7A84EB;
+  background: #989fef;
   color: white;
   text-transform: uppercase;
   border: none;
@@ -176,7 +180,7 @@ hr {
 }
 
 .pro-button:hover {
-  background: #636ee6;
+  background: #8992ed;
   cursor: pointer;
 }
 
@@ -198,11 +202,73 @@ font-size: 20px;
 }
 
 .list-button {
-  background: #7A84EB;
+  background: #989fef;
   color: white;
   text-transform: uppercase;
   border: none;
   border-radius: 4px;
   height: 40px;
   width: 90px;
+}
+
+.list-button:hover {
+  background: #8992ed;
+}
+.card {
+  padding: 30px;
+  background-color: #636ee6;
+  border-radius: 10px;
+  margin: 4px
+}
+
+.canban-wrapper {
+  width:100%;
+  margin: auto;
+}
+
+.canban-header {
+  background-color: #7A84EB;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.canban {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.pro-name {
+  font-size: 25px;
+  color: white;
+  margin-left: 300px;
+}
+.canbanBord {
+  font-size: 25px;
+  color: white;
+  margin-left: 300px;
+}
+.canban-section {
+  width: 400px;
+  background-color: #a6adf2;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.canban-section-title {
+  margin-bottom: 2px
+}
+
+/*#dropDown {
+  background: #989fef;
+}
+
+#dropDown:hover {
+  background: #636ee6;
+}*/
+
+.text-primary {
+  background: #989fef;
 }

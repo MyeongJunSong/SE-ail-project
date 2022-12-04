@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginPage from "../LoginPage/LoginPage";
 
 function RegisterPage() {
   const [id, setId] = useState("");
@@ -16,7 +15,6 @@ function RegisterPage() {
 
   const changeId = (event) => {
     setId(event.target.value);
-    console.log(id);
   };
 
   const changeNickname = (event) => {
@@ -32,23 +30,18 @@ function RegisterPage() {
     await axios
       .get(`http://43.200.187.27/api/users/idCanUsable/${id}`)
       .then((resp) => {
-        console.log(resp);
         if (resp.data.data === true) {
           setidCanUsable(true);
-          console.log(id);
           alert("사용 가능한 아이디입니다.");
         }
         if (resp.data.data === false) {
           setidCanUsable(false);
           setId("");
-          console.log(id);
           alert("중복된 아이디입니다.");
         }
       })
       .catch((err) => {
-        console.log(err);
-        const resp = err.response;
-        alert(resp.data);
+        alert("아이디 중복 조회 실패!");
       });
   };
 
@@ -62,16 +55,18 @@ function RegisterPage() {
     await axios
       .post("http://43.200.187.27/api/users/save", req)
       .then((resp) => {
-        console.log(resp);
-
         alert(resp.data.data.users_id + "님 회원가입 되었습니다!");
         setidCanUsable(false);
+        setId("");
+        setNickname("");
+        setPwd("");
         navigate("/login");
       })
       .catch((err) => {
-        console.log(err);
-
         alert(err.response.data);
+        setId("");
+        setNickname("");
+        setPwd("");
       });
   };
   return (

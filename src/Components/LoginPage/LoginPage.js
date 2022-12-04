@@ -24,16 +24,17 @@ function LoginPage() {
     await axios
       .post("http://43.200.187.27/api/users/login", user)
       .then((resp) => {
-        console.log(resp);
         alert(id + "님 로그인 되었습니다");
+        setId("");
+        setPwd("");
         setUserId(id);
         setUserPwd(pwd);
         navigate("/project");
       })
       .catch((err) => {
-        console.log(err);
-
         alert(err.response.data.message);
+        setId("");
+        setPwd("");
       });
   };
   return (

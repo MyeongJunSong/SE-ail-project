@@ -1,36 +1,37 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useridState } from "../recoil/Atom";
+import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import { projectidState, projectNameState } from "../recoil/Atom";
+import {
+  projectidState,
+  projectNameState,
+  useridState,
+  userpwdState,
+} from "../recoil/Atom";
 import { useNavigate } from "react-router-dom";
 function ProjectPage() {
-  const userId = useRecoilValue(useridState);
-
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [userProject, setUserProject] = useState([]);
   const [projectId, setProjectId] = useRecoilState(projectidState);
   const [projectNameRe, setProjectNameRe] = useRecoilState(projectNameState);
-
+  const [userId, setUserId] = useRecoilState(useridState);
+  const [userPwd, setUserPwd] = useRecoilState(userpwdState);
+  const [show4, setShow4] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const handleClose4 = () => setShow4(false);
+  const handleShow4 = () => setShow4(true);
   const changeProjectName = (e) => {
     setProjectName(e.target.value);
   };
 
   const projectLogin = (projects_id, name) => {
-    console.log(projects_id);
-    console.log(name);
     setProjectId(projects_id);
     setProjectNameRe(name);
-    console.log(projectId);
-    console.log(projectNameRe);
     navigate("/canban");
   };
   const handleSubmit = async (e) => {
@@ -43,22 +44,20 @@ function ProjectPage() {
     await axios
       .post("http://43.200.187.27/api/projects/save", req)
       .then((resp) => {
-        console.log(resp);
         const project = {
           name: projectName,
           projects_id: resp.data.data.projects_id,
         };
 
         setUserProject([...userProject, project]);
-        console.log(userProject);
         alert(resp.data.message);
         handleClose();
+        setProjectName("");
       })
       .catch((err) => {
-        console.log(err);
-
         alert("프로젝트 저장 실패!");
         handleClose();
+        setProjectName("");
       });
   };
 
@@ -66,13 +65,17 @@ function ProjectPage() {
     await axios
       .get(`http://43.200.187.27/api/users/getProjectsList/${userId}`)
       .then((resp) => {
-        console.log(resp);
         setUserProject(resp.data.data);
-        console.log(userProject);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
+  };
+  const logout = () => {
+    setProjectId("");
+    setProjectNameRe("");
+    setUserId("");
+    setUserPwd("");
+    handleClose4();
+    navigate("/");
   };
 
   useEffect(() => {
@@ -82,7 +85,9 @@ function ProjectPage() {
     <div>
       <div className="pro-wrapper">
         <div className="pro-header">
-          <div className="user-id">{userId}</div>
+          <div className="user-id" onClick={handleShow4}>
+            {userId}
+          </div>
           <div className="project">Project Dashbord</div>
         </div>
         <div className="pro-container">
@@ -132,6 +137,20 @@ function ProjectPage() {
             </Button>
             <Button variant="primary" onClick={handleSubmit}>
               프로젝트 생성
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={show4} onHide={handleClose4}>
+          <Modal.Header closeButton>
+            <Modal.Title>로그 아웃</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose4}>
+              닫기
+            </Button>
+            <Button variant="primary" onClick={logout}>
+              로그 아웃
             </Button>
           </Modal.Footer>
         </Modal>
