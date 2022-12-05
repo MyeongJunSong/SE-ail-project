@@ -257,8 +257,6 @@ function CanbanPage() {
       });
   };
   const logout = () => {
-    setUserId("");
-    setUserPwd("");
     handleClose4();
     navigate("/");
   };

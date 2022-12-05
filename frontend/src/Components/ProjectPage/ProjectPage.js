@@ -70,8 +70,6 @@ function ProjectPage() {
       .catch((err) => {});
   };
   const logout = () => {
-    setUserId("");
-    setUserPwd("");
     handleClose4();
     navigate("/");
   };
